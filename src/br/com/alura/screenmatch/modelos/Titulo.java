@@ -11,7 +11,7 @@ public class Titulo implements Comparable<Titulo> {
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
-    private int duracaoEmMinutos;
+    private String duracaoEmMinutos;
 
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
@@ -21,12 +21,8 @@ public class Titulo implements Comparable<Titulo> {
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.nome = meuTituloOmdb.title();
 
-        if(meuTituloOmdb.year().length() > 4) {
-            throw new ErroDeConversaoDeAnoException("Não consegui converter o ano " +
-                    "porque tem mais de 04 caracteres.");
-        }
-        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
-        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0, 2));
+        this.anoDeLancamento = Integer.parseInt(meuTituloOmdb.year());
+        this.duracaoEmMinutos = meuTituloOmdb.year();
     }
 
     public String getNome() {
@@ -41,7 +37,7 @@ public class Titulo implements Comparable<Titulo> {
         return incluidoNoPlano;
     }
 
-    public int getDuracaoEmMinutos() {
+    public String getDuracaoEmMinutos() {
         return duracaoEmMinutos;
     }
 
@@ -61,7 +57,7 @@ public class Titulo implements Comparable<Titulo> {
         this.incluidoNoPlano = incluidoNoPlano;
     }
 
-    public void setDuracaoEmMinutos(int duracaoEmMinutos) {
+    public void setDuracaoEmMinutos(String duracaoEmMinutos) {
         this.duracaoEmMinutos = duracaoEmMinutos;
     }
 

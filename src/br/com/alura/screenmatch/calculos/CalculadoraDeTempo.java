@@ -21,6 +21,15 @@ public class CalculadoraDeTempo {
 
     public void inclui(Titulo titulo) {
         System.out.println("Adicionando duração em minutos de " + titulo);
-        this.tempoTotal += titulo.getDuracaoEmMinutos();
+        if (titulo instanceof Filme filme) {
+            System.out.println("Adicionando filme " + filme.getNome());
+        } else if (titulo instanceof Serie serie) {
+            System.out.println("Adicionando série " + serie.getNome());
+        }
+        if (titulo.getDuracaoEmMinutos().length() > 4) {
+            this.tempoTotal += Integer.parseInt(titulo.getDuracaoEmMinutos().substring(0, 4));
+        } else {
+            this.tempoTotal += Integer.parseInt(titulo.getDuracaoEmMinutos());
+        }
     }
 }
